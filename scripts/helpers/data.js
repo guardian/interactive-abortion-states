@@ -35,7 +35,6 @@ function setSheetNames(data) {
 
 function cleanStates(data) {
     for (var state in data.states) {
-        console.log(data.states[state]);
         data[data.states[state].state] = {};
         data[data.states[state].state] = data.states[state];
         delete data[data.states[state].state].state;
@@ -53,8 +52,6 @@ module.exports = function getData() {
         data = result;
         data = setSheetNames(data);
         data = cleanStates(data);
-
-        console.log(data);
 
         isDone = true;
     });
