@@ -7,8 +7,7 @@ var userHome = require('user-home');
 var keys = require(userHome + '/.gu/interactives.json');
 
 var json,
-    data = {regions: {}},
-    conferences = [];
+    data = {};
 
 function fetchData(callback) {
     gsjson({
@@ -28,8 +27,21 @@ function fetchData(callback) {
 
 function setSheetNames(data) {
     data = {
-        'events': data[0]
+        'states': data[0]
     }
+
+    return data;
+}
+
+function cleanStates(data) {
+    for (var state in data.states) {
+        console.log(data.states[state]);
+        data[data.states[state].state] = {};
+        data[data.states[state].state] = data.states[state];
+        delete data[data.states[state].state].state;
+    }
+
+    delete data.states;
 
     return data;
 }
@@ -40,6 +52,9 @@ module.exports = function getData() {
     fetchData(function(result) {
         data = result;
         data = setSheetNames(data);
+        data = cleanStates(data);
+
+        console.log(data);
 
         isDone = true;
     });
