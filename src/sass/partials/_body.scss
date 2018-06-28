@@ -29,7 +29,11 @@
         max-width: 100%;
     }
 
-    g.is-active path {
+    g path {
+        transition: 0.4s linear fill;
+    }
+
+    g.is-active .st0 {
         fill: $c-red;
     }
 }
