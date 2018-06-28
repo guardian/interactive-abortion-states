@@ -21,12 +21,29 @@
     margin-bottom: 40vh;
 }
 
+.uit-step__title {
+    font-size: 20px;
+    font-family: 'Guardian Egyptian Web';
+    font-weight: 700;
+    color: $c-red;
+    margin: 0;
+    line-height: 1.2;
+}
+
 .uit-map {
     &.is-fixed {
         position: fixed;
         top: 20vh;
         width: 620px;
-        max-width: 100%;
+        max-width: calc(100% - 20px);
+
+        @include mq(mobileLandscape) {
+            max-width: calc(100% - 40px);
+        }
+
+        @include mq(tablet) {
+            max-width: 100%;
+        }
     }
 
     g path {
