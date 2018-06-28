@@ -60,5 +60,8 @@ module.exports = function getData() {
         return !isDone;
     });
 
+    fs.mkdirsSync('.data');
+    fs.writeFileSync('.data/data.json', JSON.stringify(data));
+
     return data;
 };
