@@ -18,7 +18,7 @@
     border-left: 1px solid $c-light-grey;
     border-top: 1px solid $c-light-grey;
     padding: 6px;
-    margin-bottom: 40vh;
+    margin-bottom: 80vh;
 }
 
 .uit-step__title {
@@ -52,5 +52,9 @@
 
     g.is-active .st0 {
         fill: $c-red;
+    }
+
+    g.is-active.is-mixed .st0 {
+        fill: $c-light-red;
     }
 }

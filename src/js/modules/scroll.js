@@ -54,13 +54,19 @@ module.exports =  {
     highlightStates: function(step) {
         if (step === null) {
             $('.uit-map g').removeClass();
+            currentStep = step;
         } else if (step !== currentStep) {
             $('.uit-map g').removeClass();
 
             $('.uit-map g').each(function(i, el) {
                 var state = $(el).attr('id');
 
-                if (data[state][step] && data[state][step] === 'YES') {
+                if (data[state][step]) {
+                    console.log(data[state][step]);
+                    if (data[state][step] == 'MIXED') {
+                        $(el).addClass('is-mixed');
+                    }
+
                     $(el).addClass('is-active');
                 }
             });
