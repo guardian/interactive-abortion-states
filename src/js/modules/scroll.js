@@ -1,5 +1,5 @@
 var data = JSON.parse('{{ data }}');
-var windowTop, windowHeight, stepToShow;
+var windowTop, windowHeight, stepToShow, currentStep;
 
 module.exports =  {
     init: function() {
@@ -44,19 +44,28 @@ module.exports =  {
             }
         }.bind(this));
 
-        // remove current step
-        $('.uit-map').removeClass(function(i, className) {
-            if (className) {
-                return (className.match(/uit-map-state--[0-9]{1,2}/g) || []).join(' ');
-            }
-        });
-
-        if (stepToShow !== null) {
-            $('.uit-map').addClass('uit-map-state--' + stepToShow);
-        }
+        this.highlightStates(stepToShow);
     },
 
     percentageOfHeight: function(percentage) {
         return (windowHeight / 100) * percentage;
+    },
+
+    highlightStates: function(step) {
+        if (step === null) {
+            $('.uit-map g').removeClass();
+        } else if (step !== currentStep) {
+            $('.uit-map g').removeClass();
+
+            $('.uit-map g').each(function(i, el) {
+                var state = $(el).attr('id');
+
+                if (data[state][step] && data[state][step] === 'YES') {
+                    $(el).addClass('is-active');
+                }
+            });
+
+            currentStep = step;
+        }
     }
 };

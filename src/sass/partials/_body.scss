@@ -28,4 +28,8 @@
         width: 620px;
         max-width: 100%;
     }
+
+    g.is-active path {
+        fill: $c-red;
+    }
 }
