@@ -47,14 +47,30 @@
     }
 
     g path {
-        transition: 0.4s linear fill;
-    }
-
-    g.is-active .st0 {
-        fill: $c-red;
-    }
-
-    g.is-active.is-mixed .st0 {
-        fill: $c-light-red;
+        transition: 0.6s linear all;
     }
 }
+
+@mixin colourStep($name, $color) {
+    .uit-step[data-step='#{$name}'] {
+        .uit-step__title {
+            color: $color;
+        }
+    }
+
+    .uit-map g.is-#{$name} .st0 {
+        fill: $color;
+    }
+
+    .uit-map.is-#{$name} .st0 {
+        opacity: .4;
+    }
+
+    .uit-map.is-#{$name} g.is-#{$name} .st0 {
+        opacity: 1;
+    }
+}
+
+@include colourStep('antiChoiceLegislature', $c-light-red);
+@include colourStep('ageLimit', $c-red);
+@include colourStep('triggerLaws', $c-dark-red);

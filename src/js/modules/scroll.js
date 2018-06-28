@@ -1,10 +1,10 @@
 var data = JSON.parse('{{ data }}');
-var windowTop, windowHeight, stepToShow, currentStep;
+var windowTop, windowHeight, stepToShow, steps;
 
 module.exports =  {
     init: function() {
-        console.log(data);
         this.bindings();
+        this.populateMap();
     },
 
     bindings: function() {
@@ -17,6 +17,24 @@ module.exports =  {
         this.updateValues();
         this.fixMap();
         this.setStep();
+    },
+
+    populateMap: function() {
+        steps = [];
+
+        $('.uit-step').each(function(i, el) {
+            steps.push($(el).data('step'));
+        }.bind(this));
+
+        $('.uit-map g').each(function(i, el) {
+            var state = $(el).attr('id');
+
+            for (var step in steps) {
+                if (data[state][steps[step]]) {
+                    $(el).addClass('is-' + steps[step]);
+                }
+            }
+        }.bind(this));
     },
 
     updateValues: function() {
@@ -51,26 +69,11 @@ module.exports =  {
         return (windowHeight / 100) * percentage;
     },
 
-    highlightStates: function(step) {
-        if (step === null) {
-            $('.uit-map g').removeClass();
-            currentStep = step;
-        } else if (step !== currentStep) {
-            $('.uit-map g').removeClass();
-
-            $('.uit-map g').each(function(i, el) {
-                var state = $(el).attr('id');
-
-                if (data[state][step]) {
-                    if (data[state][step] == 'MIXED') {
-                        $(el).addClass('is-mixed');
-                    }
-
-                    $(el).addClass('is-active');
-                }
-            });
-
-            currentStep = step;
+    highlightStates: function(currentStep) {
+        for (var step in steps) {
+            $('.uit-map').removeClass('is-' + steps[step])
         }
+
+        $('.uit-map').addClass('is-' + currentStep);
     }
 };
