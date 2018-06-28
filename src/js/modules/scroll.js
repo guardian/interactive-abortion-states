@@ -62,7 +62,6 @@ module.exports =  {
                 var state = $(el).attr('id');
 
                 if (data[state][step]) {
-                    console.log(data[state][step]);
                     if (data[state][step] == 'MIXED') {
                         $(el).addClass('is-mixed');
                     }
