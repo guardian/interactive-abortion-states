@@ -36,7 +36,7 @@ module.exports =  {
 
             for (var step in steps) {
                 if (data[state][steps[step]]) {
-                    $(el).addClass('is-' + steps[step]);
+                    $(el).addClass('is-bad is-' + steps[step]);
                 }
             }
         }.bind(this));
@@ -45,7 +45,7 @@ module.exports =  {
     updateValues: function() {
         windowTop = window.pageYOffset || document.documentElement.scrollTop;
         windowHeight = $(window).height();
-        mapHeight = $('.uit-map').height();
+        mapHeight = $('.uit-map').height() + 48;
     },
 
     fixMap: function() {
@@ -62,7 +62,7 @@ module.exports =  {
         var stepToShow = null;
 
         $('.uit-step').each(function(i, el) {
-            if (windowTop > $(el).offset().top - this.percentageOfHeight(20)) {
+            if (windowTop > $(el).offset().top - this.percentageOfHeight(75)) {
                 stepToShow = $(el).data('step');
             }
         }.bind(this));

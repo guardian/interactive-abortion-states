@@ -3,6 +3,27 @@
         @include bodyCopy();
         margin-bottom: 18px;
     }
+
+    a {
+        color: $c-red;
+        border-bottom: 1px solid rgba($c-red, 0.3);
+
+        &:hover {
+            text-decoration: none;
+            border-bottom-color: $c-red;
+        }
+    }
+
+    p.source {
+        font-size: 16px;
+        color: $c-grey;
+        font-family: 'Guardian Sans Web';
+
+        a {
+            color: $c-grey;
+            border-bottom: 1px solid $c-grey;
+        }
+    }
 }
 
 .uit-steps {
@@ -25,12 +46,14 @@
     font-size: 20px;
     font-family: 'Guardian Egyptian Web';
     font-weight: 700;
-    color: $c-red;
+    color: $c-black;
     margin: 0;
     line-height: 1.2;
 }
 
 .uit-map {
+    padding: 24px 0;
+
     &.is-fixed {
         position: fixed;
         top: 20vh;
@@ -62,7 +85,7 @@
         fill: $color;
     }
 
-    .uit-map.is-#{$name} .st0 {
+    .uit-map.is-#{$name} g.is-bad .st0 {
         opacity: .3;
     }
 
