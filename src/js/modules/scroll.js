@@ -1,16 +1,21 @@
 var data = JSON.parse('{{ data }}');
-var windowTop, windowHeight, stepToShow, steps;
+var windowTop, windowHeight, steps;
 
 module.exports =  {
     init: function() {
-        this.bindings();
         this.populateMap();
+        this.bindings();
+        this.onScroll();
     },
 
     bindings: function() {
         $(window).scroll(function() {
             this.onScroll();
-        }.bind(this))
+        }.bind(this));
+
+        $(window).resize(function() {
+            this.onScroll();
+        }.bind(this));
     },
 
     onScroll: function() {
@@ -54,7 +59,7 @@ module.exports =  {
     },
 
     setStep: function() {
-        stepToShow = null;
+        var stepToShow = null;
 
         $('.uit-step').each(function(i, el) {
             if (windowTop > $(el).offset().top - this.percentageOfHeight(20)) {

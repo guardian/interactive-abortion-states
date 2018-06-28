@@ -63,11 +63,12 @@
     }
 
     .uit-map.is-#{$name} .st0 {
-        opacity: .4;
+        opacity: .3;
     }
 
     .uit-map.is-#{$name} g.is-#{$name} .st0 {
         opacity: 1;
+        fill: $color !important;
     }
 }
 
