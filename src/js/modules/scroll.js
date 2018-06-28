@@ -1,7 +1,9 @@
+var data = JSON.parse('{{ data }}');
 var windowTop, windowHeight, stepToShow;
 
 module.exports =  {
     init: function() {
+        console.log(data);
         this.bindings();
     },
 
@@ -24,7 +26,6 @@ module.exports =  {
     },
 
     fixMap: function() {
-        console.log('fixing');
         if (windowTop > $('.uit-map__point').offset().top - this.percentageOfHeight(20)) {
             $('.uit-map').addClass('is-fixed');
             $('.uit-map__point').attr('style', 'margin-bottom:' + mapHeight + 'px;');
