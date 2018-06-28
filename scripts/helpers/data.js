@@ -35,6 +35,7 @@ function setSheetNames(data) {
 
 function cleanStates(data) {
     for (var state in data.states) {
+        delete data.states[state].fullState;
         data[data.states[state].state] = {};
         data[data.states[state].state] = data.states[state];
         delete data[data.states[state].state].state;
