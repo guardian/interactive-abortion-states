@@ -1,5 +1,5 @@
 var pageUrl = window.location.href.split('#')[0],
-    shareCopy = 'What a cool article #Article';
+    shareCopy = '24 US states could ban abortion in two years';
 
 module.exports =  {
     init: function() {
